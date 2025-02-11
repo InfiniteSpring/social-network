@@ -4,9 +4,10 @@ import coockieParser from 'cookie-parser'
 import {v2 as cloudinary} from 'cloudinary'
 
 import connectMongoDB from './db/connection.js'
-import authRouter from './routes/auth.routes.js'
-import userRouter from './routes/user.routes.js'
-import postRouter from './routes/post.routes.js'
+import authRouter from './routes/auth.route.js'
+import userRouter from './routes/user.route.js'
+import postRouter from './routes/post.route.js'
+import notificationRouter from './routes/notification.route.js'
 
 
 dotenv.config()
@@ -28,6 +29,7 @@ app.use(coockieParser())
 app.use("/api/auth", authRouter)
 app.use("/api/users", userRouter)
 app.use("/api/posts", postRouter)
+app.use("/api/notification", notificationRouter) 
 
  
 app.listen(PORT, () => {

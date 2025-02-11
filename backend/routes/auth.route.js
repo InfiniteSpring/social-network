@@ -10,5 +10,4 @@ router.post("/login", login)
 router.post("/logout", protectRoute, logout)
 router.get("/me", protectRoute, getMe)
 
-
 export default router  
