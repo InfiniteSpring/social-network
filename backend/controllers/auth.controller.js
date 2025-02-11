@@ -1,9 +1,11 @@
-import User from "../models/user.model.js";
 import bcrypt from "bcryptjs"
+
+import User from "../models/user.model.js";
 import { generateTokenAndSetCookie } from "../lib/utils/generateToken.js"
+import { validatePassword } from "../lib/utils/validatePassword.js"
 
 
-export const signup = async (req, res) => {
+export const signup = async (req, res) => { 
     try {
         const { username, password, fullname, email } = req.body;
         
@@ -20,6 +22,10 @@ export const signup = async (req, res) => {
         const existingEmail = await User.findOne({ email })
         if(existingEmail){
             return res.status(400).json({ error: "Email is already taken" })
+        }
+
+        if(!validatePassword(password)){
+            return res.status(400).json({ error: 'Password must have at least on uppercase letter, one lowercase letter, one number and one special character.(length more than 4)'})
         }
 
         const salt = await bcrypt.genSalt(10);
