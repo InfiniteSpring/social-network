@@ -1,16 +1,18 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/home/HomePage.jsx'
+import SignUpPage from './pages/auth/signup/SignUpPage.jsx'
+import LoginPage from './pages/auth/login/LogInPage.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <p className='testClass'>this is App.jsx</p>
-      <button className="btn btn-outline">Default</button>
-      <button className="btn btn-outline btn-primary">Primary</button>
-      <button className="btn btn-outline btn-secondary">Secondary</button>
-      <button className="btn btn-outline btn-accent">Accent</button>
-    </>
+    <div className='flex max-w-6xl mx-auto'>
+			<Routes>
+				<Route path='/' element={<HomePage />} />
+				<Route path='/signup' element={<SignUpPage />} />
+				<Route path='/login' element={<LoginPage />} />
+			</Routes>
+		</div>
   )
 }
 
